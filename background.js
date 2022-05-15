@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(() => {
   // chrome.storage.local.set({color: color});
   chrome.windows.getAll({}, (windows) => {
     windows.forEach(window => {
-      console.log(window.width);
+      // console.log(window.width);
       chrome.tabs.query({ windowId: window.id }, (tabs) => {
         tabs.forEach(tab => {
           console.log(tab.url);
@@ -24,7 +24,15 @@ chrome.runtime.onInstalled.addListener(() => {
     });
   });
 
-  chrome.storage.local.set({url: 'www.google.com'});
+  chrome.storage.local.set({
+    urls: ["https://www.nytimes.com/games/wordle/index.html",
+          "https://developer.chrome.com/docs/extensions/reference/windows/#method-create"]
+  });
+
+  chrome.storage.local.get("urls", ({ urls }) => {
+    console.log(urls);
+  });
+  // console.log(urls);
 
 });
 

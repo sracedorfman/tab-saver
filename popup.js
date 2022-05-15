@@ -12,7 +12,9 @@ restore.addEventListener("click", async () => {
     });
   });
 
-  chrome.windows.create({
-    url: "https://www.nytimes.com/games/wordle/index.html"
+  urls = chrome.storage.local.get("urls", ({ urls }) => {
+    chrome.windows.create({
+      url: urls
+    });
   });
 });
